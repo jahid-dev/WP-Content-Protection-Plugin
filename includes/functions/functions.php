@@ -262,8 +262,14 @@ function jh_disable_pages_wise_permission_callback($pages_permission){
 		}elseif( !empty($permission_pages) && in_array(get_the_ID(), $permission_pages) ){
 			return true;
 		}else{
-			if(empty($permission_post_types) && empty($permission_pages)){
+			if( empty($permission_post_types) && is_single() ){
 				return true;
+			}elseif( !empty($permission_post_types) && is_single() ){
+				if( in_array(get_post_type(), $permission_post_types)){
+					return true;
+				}else{
+					return false;
+				}
 			}else{
 				return false;
 			}
@@ -279,8 +285,14 @@ function jh_disable_pages_wise_permission_callback($pages_permission){
 			}elseif( !empty($permission_pages) && in_array(get_the_ID(), $permission_pages) ){
 				return true;
 			}else{
-				if(empty($permission_post_types) && empty($permission_pages)){
+				if( empty($permission_post_types) && is_single() ){
 					return true;
+				}elseif( !empty($permission_post_types) && is_single() ){
+					if( in_array(get_post_type(), $permission_post_types)){
+						return true;
+					}else{
+						return false;
+					}
 				}else{
 					return false;
 				}
